@@ -69,7 +69,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 		{
 			--this->m_energyPoints;
 			this->m_hitPoints += amount;
-			std::cout << this->m_name << " repairs itself by " << amount << "hit points, and now has " << this->m_hitPoints << " hit points." << std::endl;
+			std::cout << this->m_name << " repairs itself by " << amount << " hit points, and now has " << this->m_hitPoints << " hit points." << std::endl;
 		}
 		else
 			std::cout << this->m_name << " is out of hit points." << std::endl;
