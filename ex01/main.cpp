@@ -1,76 +1,49 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include <iostream>
 
 int main(void)
 {
-	std::cout << "\n=== Test 1: Default constructor ===\n";
-	{
-		ClapTrap  defaultTrap;
-		defaultTrap.attack("a rock");
-	}
+	std::cout << "=== Construction ===" << std::endl;
+	ClapTrap clap("Clappy");
+	ScavTrap scav("Scavvy");
 
-	std::cout << "\n=== Test 2: String constructor ===\n";
-	{
-		ClapTrap  namedTrap("Bumblebee");
-		namedTrap.attack("Barricade");
-	}
+	std::cout << "\n=== Attack difference (message wording) ===" << std::endl;
+	clap.attack("enemy");
+	scav.attack("enemy");
 
-	std::cout << "\n=== Test 3: takeDamage (normal + overkill) ===\n";
-	{
-		ClapTrap  trap("Grimlock");
-		trap.takeDamage(4);
-		trap.takeDamage(4);
-		trap.takeDamage(10);
-	}
+	std::cout << "\n=== ScavTrap-specific ability ===" << std::endl;
+	scav.guardGate();
 
-	std::cout << "\n=== Test 4: beRepaired ===\n";
-	{
-		ClapTrap  trap("Wheeljack");
-		trap.takeDamage(6);
-		trap.beRepaired(3);
-		std::cout << std::endl;
-	}
+	std::cout << "\n=== takeDamage / beRepaired ===" << std::endl;
+	clap.takeDamage(50);
+	clap.beRepaired(10);
 
-	std::cout << "\n=== Test 5: energyPoints reaching 0 ===\n";
-	{
-		ClapTrap  trap("Ironhide");
-		for (int i = 0; i < 10; ++i)
-			trap.attack("training dummy");
-		trap.attack("training dummy");
-		trap.beRepaired(1);
-		std::cout << std::endl;
-	}
+	std::cout << "\n=== Copy constructor ===" << std::endl;
+	ScavTrap scavCopy(scav);
+	scavCopy.attack("copy-test-target");
 
-	std::cout << "\n=== Test 6: hitPoints reaching 0 ===\n";
-	{
-		ClapTrap  trap("Sideswipe");
-		trap.takeDamage(15);
-		trap.attack("a wall");
-	}
+	std::cout << "\n=== Assignment operator ===" << std::endl;
+	ScavTrap scavAssigned("Temp");
+	scavAssigned.takeDamage(80);
+	scavAssigned = scav;
+	scavAssigned.attack("post-assign-target");
 
-	std::cout << "\n=== Test 7: Copy constructor ===\n";
-	{
-		ClapTrap  original("Optimus");
-		original.takeDamage(3);
-		ClapTrap  copy(original);
-		copy.attack("Megatron");
-	}
+	std::cout << "\n=== Energy depletion ===" << std::endl;
+	ClapTrap depleted("Empty");
+	for (int i = 0; i < 51; i++)
+		depleted.attack("target");
 
-	std::cout << "\n=== Test 8: Copy assignment operator ===\n";
-	{
-		ClapTrap  a("Jazz");
-		ClapTrap  b("Prowl");
-		a.takeDamage(5);
-		b = a;
-		b.attack("Shockwave");
-	}
+	std::cout << "\n=== HP depletion ===" << std::endl;
+	ClapTrap fragile("Fragile");
+	fragile.takeDamage(1000);
+	fragile.attack("target");
 
-	std::cout << "\n=== Test 9: Self-assignment ===\n";
-	{
-		ClapTrap  trap("Ratchet");
-		trap = trap;
-		trap.attack("a drone");
-	}
+	std::cout << "\n=== Polymorphism (base pointer) ===" << std::endl;
+	ClapTrap *poly = new ScavTrap("PolyScav");
+	poly->attack("poly-target");
+	delete poly;
 
-	std::cout << "\n=== End of tests ===\n" << std::endl;
+	std::cout << "\n=== Destruction order ===" << std::endl;
 	return (0);
 }

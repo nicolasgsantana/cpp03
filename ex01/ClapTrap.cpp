@@ -1,13 +1,13 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : m_name("ClapTrap"), m_hitPoints(10), m_energyPoints(10), m_attackDamage(0)
+ClapTrap::ClapTrap(void) : m_name("Claptrap unit"), m_hitPoints(100), m_energyPoints(50), m_attackDamage(20)
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &obj) : m_hitPoints(10), m_energyPoints(10), m_attackDamage(0)
+ClapTrap::ClapTrap(const ClapTrap &obj) : m_hitPoints(100), m_energyPoints(50), m_attackDamage(20)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "ClapTrap copy constructor called" << std::endl;
 	*this = obj;
 }
 
@@ -25,12 +25,12 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &obj)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "ClapTrap destructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name) : m_hitPoints(10), m_energyPoints(10), m_attackDamage(0)
+ClapTrap::ClapTrap(const std::string &name) : m_hitPoints(100), m_energyPoints(50), m_attackDamage(20)
 {
-	std::cout << "String constructor called" << std::endl;
+	std::cout << "ClapTrap string constructor called" << std::endl;
 	this->m_name = name;
 }
 
@@ -69,7 +69,7 @@ void ClapTrap::beRepaired(unsigned int amount)
 		{
 			--this->m_energyPoints;
 			this->m_hitPoints += amount;
-			std::cout << this->m_name << " repairs itself by " << amount << "hit points, and now has " << this->m_hitPoints << " hit points." << std::endl;
+			std::cout << this->m_name << " repairs itself by " << amount << " hit points, and now has " << this->m_hitPoints << " hit points." << std::endl;
 		}
 		else
 			std::cout << this->m_name << " is out of hit points." << std::endl;
