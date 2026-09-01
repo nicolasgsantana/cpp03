@@ -39,6 +39,7 @@ void FragTrap::highFivesGuys(void)
 	{
 		if (this->m_hitPoints > 0)
 		{
+			--this->m_energyPoints;
 			std::cout << this->m_name << ": HIGH FIVES GUYS" << std::endl;
 		}
 		else
