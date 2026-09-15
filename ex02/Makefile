@@ -1,4 +1,4 @@
-NAME = fragtrap
+NAME = scavtrap
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
