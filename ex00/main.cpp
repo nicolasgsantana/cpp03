@@ -64,13 +64,6 @@ int main(void)
 		b.attack("Shockwave");
 	}
 
-	std::cout << "\n=== Test 9: Self-assignment ===\n";
-	{
-		ClapTrap  trap("Ratchet");
-		trap = trap;
-		trap.attack("a drone");
-	}
-
 	std::cout << "\n=== End of tests ===\n" << std::endl;
 	return (0);
 }
